@@ -1,3 +1,4 @@
+import json
 import numpy as np
 
 from bertalign import model
@@ -83,11 +84,30 @@ class Bertalign:
         print("Finished! Successfully aligning {} {} sentences to {} {} sentences\n".format(self.src_num, self.src_lang, self.tgt_num, self.tgt_lang))
         self.result = second_alignment
     
-    def print_sents(self):
-        for bead in (self.result):
+    def get_sents(self):
+        sents = []
+        for bead in self.result:
             src_line = self._get_line(bead[0], self.src_sents)
             tgt_line = self._get_line(bead[1], self.tgt_sents)
+            sents.append((src_line, tgt_line))
+        return sents
+
+    def print_sents(self):
+        sents = self.get_sents()
+        for src_line, tgt_line in sents:
             print(src_line + "\n" + tgt_line + "\n")
+
+    def save_sents_to_json(self, filename):
+        sents = self.get_sents()
+        data = []
+        for idx, (src_line, tgt_line) in enumerate(sents, start=1):
+            data.append({
+                'id': idx,
+                'src': src_line,
+                'tgt': tgt_line
+            })
+        with open(filename, 'w') as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
 
     @staticmethod
     def _get_line(bead, lines):
