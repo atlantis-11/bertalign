@@ -1,3 +1,4 @@
+import os
 import re
 from googletrans import Translator
 from sentence_splitter import SentenceSplitter
@@ -25,11 +26,18 @@ def detect_lang(text):
     return lang
 
 def split_sents(text, lang):
-    if lang in LANG.SPLITTER:
+    if lang in LANG.SPLITTER or lang in LANG.LOCAL:
         if lang == 'zh':
             sents = _split_zh(text)
         else:
-            splitter = SentenceSplitter(language=lang)
+            if lang in LANG.LOCAL:
+                dirname = os.path.dirname(__file__)
+                nbp_file = os.path.join(dirname, LANG.LOCAL_PATH, f'{lang}.txt')
+
+                splitter = SentenceSplitter(language=lang, non_breaking_prefix_file=nbp_file)
+            else:
+                splitter = SentenceSplitter(language=lang)
+
             sents = splitter.split(text=text) 
             sents = [sent.strip() for sent in sents]
         return sents
@@ -105,6 +113,10 @@ class LANG:
         'sv': 'Swedish',
         'tr': 'Turkish',
     }
+    LOCAL = {
+        'uk': 'Ukrainian',
+    }
+    LOCAL_PATH = 'non_breaking_prefixes/'
     ISO = {
 		'aa': 'Afar',
 		'ab': 'Abkhaz',
