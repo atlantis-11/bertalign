@@ -27,21 +27,21 @@ class Bertalign:
         
         src = clean_text(src)
         tgt = clean_text(tgt)
-        src_lang = detect_lang(src)
-        tgt_lang = detect_lang(tgt)
+        src_lang_code = detect_lang(src)
+        tgt_lang_code = detect_lang(tgt)
         
         if is_split:
             src_sents = src.splitlines()
             tgt_sents = tgt.splitlines()
         else:
-            src_sents = split_sents(src, src_lang)
-            tgt_sents = split_sents(tgt, tgt_lang)
+            src_sents = split_sents(src, src_lang_code)
+            tgt_sents = split_sents(tgt, tgt_lang_code)
  
         src_num = len(src_sents)
         tgt_num = len(tgt_sents)
         
-        src_lang = LANG.ISO[src_lang]
-        tgt_lang = LANG.ISO[tgt_lang]
+        src_lang = LANG.ISO[src_lang_code]
+        tgt_lang = LANG.ISO[tgt_lang_code]
         
         print("Source language: {}, Number of sentences: {}".format(src_lang, src_num))
         print("Target language: {}, Number of sentences: {}".format(tgt_lang, tgt_num))
@@ -52,6 +52,8 @@ class Bertalign:
 
         char_ratio = np.sum(src_lens[0,]) / np.sum(tgt_lens[0,])
 
+        self.src_lang_code = src_lang_code
+        self.tgt_lang_code = tgt_lang_code
         self.src_lang = src_lang
         self.tgt_lang = tgt_lang
         self.src_sents = src_sents
@@ -97,17 +99,25 @@ class Bertalign:
         for src_line, tgt_line in sents:
             print(src_line + "\n" + tgt_line + "\n")
 
-    def save_sents_to_json(self, filename):
+    def save_result_to_json(self, filename):
         sents = self.get_sents()
         data = []
+
         for idx, (src_line, tgt_line) in enumerate(sents, start=1):
             data.append({
                 'id': idx,
                 'src': src_line,
                 'tgt': tgt_line
             })
+        
+        result = {
+            'src_lang_code': self.src_lang_code,
+            'tgt_lang_code': self.tgt_lang_code,
+            'data': data
+        }
+
         with open(filename, 'w') as f:
-            json.dump(data, f, indent=2, ensure_ascii=False)
+            json.dump(result, f, indent=2, ensure_ascii=False)
 
     @staticmethod
     def _get_line(bead, lines):
