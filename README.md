@@ -14,13 +14,29 @@ According to our experiments, Bertalign achieves more accurate results on [Text+
 
 ## Languges Supported
 
-Alignment between 25 languages: Catalan (ca), Chinese (zh), Czech (cs), Danish (da), Dutch (nl), English(en), Finnish (fi), French (fr), German (de), Greek (el), Hungarian (hu), Icelandic (is), Italian (it), Lithuanian (lt), Latvain (lv), Norwegian (no), Polish (pl), Portuguese (pt), Romanian (ro), Russian (ru), Slovak (sk), Slovenian (sl), Spanish (es), Swedish (sv), and Turkish (tr).
+Alignment between 25 languages: Catalan (ca), Chinese (zh), Czech (cs), Danish (da), Dutch (nl), English(en), Finnish (fi), French (fr), German (de), Greek (el), Hungarian (hu), Icelandic (is), Italian (it), Lithuanian (lt), Latvain (lv), Norwegian (no), Polish (pl), Portuguese (pt), Romanian (ro), Russian (ru), Slovak (sk), Slovenian (sl), Spanish (es), Swedish (sv), Turkish (tr) and Ukrainian (uk).
 
 ## Installation
 
 Please see [requirements.txt](./requirements.txt) for installation. 
 
 ### You can also install Bertalign and run the examples directly in a [Google Colab notebook](https://colab.research.google.com/drive/123GhXwgwmQp1F5SVZ74_uIgyxo6hLRq0?usp=sharing).
+
+## Notes from the fork author
+
+This package has been tested with Python 3.9 and should work with Python versions 3.7 to 3.10.
+
+### Dependencies
+
+The faiss-gpu dependency is available as pre-built wheels for Linux only on PyPI.
+
+### Installation
+
+To install the package from the cloned repository, use:
+
+```
+pip install ./path_to_cloned_repo
+```
 
 ## Basic example
 

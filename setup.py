@@ -6,5 +6,11 @@ setup(
     url='https://github.com/bfsujason/bertalign',
     description='An automatic mulitlingual sentence aligner.',
     packages=find_packages(),    
-    install_requires=[],
+    install_requires=[
+        'numba==0.56.4',
+        'faiss-gpu==1.7.2',
+        'googletrans==4.0.0rc1',
+        'sentence-splitter==1.4',
+        'sentence-transformers==2.2.2',
+    ],
 )
