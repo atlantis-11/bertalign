@@ -2,14 +2,13 @@
 # This is a non-breaking prefix list for the Ukrainian language.
 # The file is used for sentence tokenization (text -> sentence splitting).
 #
-# The file is made by ChatGPT.
-#
 
 # Anything in this file, followed by a period (and an upper-case word), does NOT
 # indicate an end-of-sentence marker.
 # Special cases are included for prefixes that ONLY appear before 0-9 numbers.
 
 # Any single upper case letter followed by a period is not a sentence ender
+# (excluding I occasionally, but we leave it in).
 # Usually upper case letters are initials in a name.
 A
 B
@@ -43,6 +42,7 @@ Z
 Б
 В
 Г
+Ґ
 Д
 Е
 Є
@@ -203,49 +203,73 @@ rev
 e.g
 
 # Ukrainian abbreviations
+адм
+акад
+англ
+арк
+буд
+вид
+вип
 вул
-просп
-бул
+в. о
+в.о
+див
+доц
+зб
+іл
+ім
+ін
+кв
+кн
+коп
+м
+напр
+наук
+нац
+н. е
+н.е
+обл
+од
+оз
+п
 пл
 пров
-майд
-г
+проф
 р
+ред
+рр
+р. н
+р.н
+Р. Х
+Р.Х
 с
-п
-д
-м
-о
-смт
-село
-район
-обл
-див
-ком
-кв
-млн
-млрд
-н.е
-н. е
-до н.е
-до н. е
-після н.е
-після н. е
-г-да
-госп
-тов
-ім
-ст
 св
-ім
-напр
-в т. ч
+спец
+ст
+т
+тел
+тис
 т. д
+т.д
+т. і
+т.і
+т. ін
+т.ін
 т. п
-т. г
-т. е
-т. н
-т. о
+т.п
+т. с
+т.с
+т. ч
+т.ч
+укр
+Пн
+Пд
+Зх
+Сх
+пн
+пд
+зх
+сх
 
 #Numbers only. These should only induce breaks when followed by a numeric sequence
 # add NUMERIC_ONLY after the word for this function
