@@ -86,7 +86,7 @@ class Bertalign:
         print("Finished! Successfully aligning {} {} sentences to {} {} sentences\n".format(self.src_num, self.src_lang, self.tgt_num, self.tgt_lang))
         self.result = second_alignment
     
-    def get_sents(self):
+    def _get_sents(self):
         sents = []
         for bead in self.result:
             src_line = self._get_line(bead[0], self.src_sents)
@@ -94,13 +94,8 @@ class Bertalign:
             sents.append((src_line, tgt_line))
         return sents
 
-    def print_sents(self):
-        sents = self.get_sents()
-        for src_line, tgt_line in sents:
-            print(src_line + "\n" + tgt_line + "\n")
-
-    def save_result_to_json(self, filename):
-        sents = self.get_sents()
+    def get_result(self):
+        sents = self._get_sents()
         data = []
 
         for idx, (src_line, tgt_line) in enumerate(sents, start=1):
@@ -116,8 +111,7 @@ class Bertalign:
             'data': data
         }
 
-        with open(filename, 'w') as f:
-            json.dump(result, f, indent=2, ensure_ascii=False)
+        return result
 
     @staticmethod
     def _get_line(bead, lines):

@@ -22,22 +22,6 @@ Please see [requirements.txt](./requirements.txt) for installation.
 
 ### You can also install Bertalign and run the examples directly in a [Google Colab notebook](https://colab.research.google.com/drive/123GhXwgwmQp1F5SVZ74_uIgyxo6hLRq0?usp=sharing).
 
-## Notes from the fork author
-
-This package has been tested with Python 3.9 and should work with Python versions 3.7 to 3.10.
-
-### Dependencies
-
-The faiss-gpu dependency is available as pre-built wheels for Linux only on PyPI.
-
-### Installation
-
-To install the package from the cloned repository, use:
-
-```
-pip install ./path_to_cloned_repo
-```
-
 ## Basic example
 
 Just import *Bertalign* and initialize it with the source and target text, which will detect the source and target language automatically and split both texts into sentences. Then invoke the method *align_sents()*  to align sentences and print out the result with *print_sents()*.
@@ -280,3 +264,11 @@ Bertalign is released under the [GNU General Public License v3.0](./LICENCE)
 
 - Try the [CNN model](https://tfhub.dev/google/universal-sentence-encoder-multilingual/3) for sentence embeddings
 * Develop a GUI for Windows users
+
+## Notes from the fork author
+
+This package has been tested with Python 3.9 and should work with Python versions 3.7 to 3.10.
+
+### Dependencies
+
+faiss-gpu is available as wheels for Linux only on PyPI.
