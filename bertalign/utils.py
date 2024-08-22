@@ -15,9 +15,7 @@ def clean_text(text):
     return "\n".join(clean_text)
     
 def detect_lang(text):
-    translator = Translator(service_urls=[
-      'translate.google.com.hk',
-    ])
+    translator = Translator()
     max_len = 200
     chunk = text[0 : min(max_len, len(text))]
     lang = translator.detect(chunk).lang
@@ -45,23 +43,23 @@ def split_sents(text, lang):
         raise Exception('The language {} is not suppored yet.'.format(LANG.ISO[lang]))
     
 def _split_zh(text, limit=1000):
-        sent_list = []
-        text = re.sub('(?P<quotation_mark>([。？！](?![”’"\'）])))', r'\g<quotation_mark>\n', text)
-        text = re.sub('(?P<quotation_mark>([。？！]|…{1,2})[”’"\'）])', r'\g<quotation_mark>\n', text)
+	sent_list = []
+	text = re.sub('(?P<quotation_mark>([。？！](?![”’"\'）])))', r'\g<quotation_mark>\n', text)
+	text = re.sub('(?P<quotation_mark>([。？！]|…{1,2})[”’"\'）])', r'\g<quotation_mark>\n', text)
 
-        sent_list_ori = text.splitlines()
-        for sent in sent_list_ori:
-            sent = sent.strip()
-            if not sent:
-                continue
-            else:
-                while len(sent) > limit:
-                    temp = sent[0:limit]
-                    sent_list.append(temp)
-                    sent = sent[limit:]
-                sent_list.append(sent)
+	sent_list_ori = text.splitlines()
+	for sent in sent_list_ori:
+		sent = sent.strip()
+		if not sent:
+			continue
+		else:
+			while len(sent) > limit:
+				temp = sent[0:limit]
+				sent_list.append(temp)
+				sent = sent[limit:]
+			sent_list.append(sent)
 
-        return sent_list
+	return sent_list
         
 def yield_overlaps(lines, num_overlaps):
     lines = [_preprocess_line(line) for line in lines]

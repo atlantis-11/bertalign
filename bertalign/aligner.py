@@ -98,7 +98,7 @@ class Bertalign:
         sents = self._get_sents()
         data = []
 
-        for idx, (src_line, tgt_line) in enumerate(sents, start=1):
+        for idx, (src_line, tgt_line) in enumerate(sents):
             data.append({
                 'id': idx,
                 'src': src_line,
