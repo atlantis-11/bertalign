@@ -1,7 +1,6 @@
 import json
 import numpy as np
 
-from bertalign import model
 from bertalign.corelib import *
 from bertalign.utils import *
 
@@ -9,6 +8,7 @@ class Bertalign:
     def __init__(self,
                  src,
                  tgt,
+                 model,
                  max_align=5,
                  top_k=3,
                  win=5,
