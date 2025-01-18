@@ -1,13 +1,13 @@
-from setuptools import setup, find_namespace_packages
+from setuptools import setup, find_packages
 
 setup(
     name='Bertalign',
     version='0.1.0',
     url='https://github.com/bfsujason/bertalign',
     description='An automatic mulitlingual sentence aligner.',
-    packages=find_namespace_packages(),
+    packages=find_packages(),
     package_data={
-        'bertalign.non_breaking_prefixes': ['*.txt'],
+        'bertalign': ['non_breaking_prefixes/*.txt'],
     },
     install_requires=[
         'numba==0.56.4',
